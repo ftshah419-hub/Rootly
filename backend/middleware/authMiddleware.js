@@ -43,4 +43,30 @@ export const authenticate = asyncHandler(async (req, res, next) => {
   next();
 });
 
+export const optionalAuthenticate = asyncHandler(async (req, res, next) => {
+  let token = null;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies && req.cookies.accessToken) {
+    token = req.cookies.accessToken;
+  }
+
+  if (token) {
+    try {
+      const decoded = verifyAccessToken(token);
+      if (decoded) {
+        const user = await User.findById(decoded._id);
+        if (user && user.accountStatus === 'ACTIVE') {
+          req.user = user;
+        }
+      }
+    } catch (e) {
+      // Proceed unauthenticated
+    }
+  }
+
+  next();
+});
+
 export default authenticate;

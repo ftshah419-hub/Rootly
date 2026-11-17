@@ -1,0 +1,113 @@
+/* Rootly User Website — Rustic Premium Styling Extensions */
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+@keyframes floatMedium {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-5deg);
+  }
+}
+
+@keyframes floatFast {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(6deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: floatMedium 5s ease-in-out infinite 0.8s;
+}
+
+.animate-float-fast {
+  animation: floatFast 5.5s ease-in-out infinite 1.2s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.shimmer-skeleton {
+  background: linear-gradient(90deg, rgba(233, 216, 185, 0.25) 25%, rgba(233, 216, 185, 0.45) 50%, rgba(233, 216, 185, 0.25) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+.dark .shimmer-skeleton {
+  background: linear-gradient(90deg, rgba(70, 76, 63, 0.3) 25%, rgba(70, 76, 63, 0.6) 50%, rgba(70, 76, 63, 0.3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Card hover transitions */
+.rustic-card {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease;
+}
+.rustic-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Accessible focus ring for keyboard users */
+.rustic-focus:focus-visible {
+  outline: 2px solid #3E5035;
+  outline-offset: 2px;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-fast,
+  .animate-pulse-glow,
+  .shimmer-skeleton,
+  .rustic-card {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-// CORS configuration
+// CORS configuration allowing localhost across any dynamic Vite port (5173, 5174, 5175...)
 const allowedOrigins = [
   ENV.CLIENT_URL,
   'http://localhost:5173',
@@ -32,7 +32,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl) or any localhost port in development
+      // Allow requests with no origin (like mobile apps or curl) or any localhost/127.0.0.1 port in development
       if (!origin || allowedOrigins.includes(origin) || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
         return callback(null, true);
       }

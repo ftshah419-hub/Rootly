@@ -1,0 +1,109 @@
+/* Rustic Premium Admin Stylesheet */
+:root {
+  --admin-olive: #3E5035;
+  --admin-olive-dark: #283920;
+  --admin-olive-light: #516447;
+  --admin-terracotta: #C8754D;
+  --admin-terracotta-dark: #924b26;
+  --admin-terracotta-light: #ffa276;
+  --admin-sand: #E9D8B9;
+  --admin-cream: #F7F0E3;
+  --admin-warm-white: #FFFDF8;
+  --admin-earth: #795640;
+  --admin-sage: #A5AD91;
+  --admin-deep-bark: #282B24;
+  --admin-bark-container: #33372E;
+}
+
+/* Material Symbols icon alignment */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+/* Custom Scrollbar for Rustic Admin */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(121, 86, 64, 0.2);
+  border-radius: 9999px;
+}
+
+.dark .admin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(165, 173, 145, 0.2);
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(62, 80, 53, 0.4);
+}
+
+/* Rustic Ambient Shadows */
+.rustic-shadow-1 {
+  box-shadow: 0 2px 8px -2px rgba(62, 80, 53, 0.06), 0 1px 3px -1px rgba(121, 86, 64, 0.04);
+}
+
+.rustic-shadow-2 {
+  box-shadow: 0 8px 20px -4px rgba(62, 80, 53, 0.08), 0 4px 8px -2px rgba(200, 117, 77, 0.05);
+}
+
+.rustic-shadow-3 {
+  box-shadow: 0 16px 36px -6px rgba(40, 43, 36, 0.16), 0 8px 16px -4px rgba(121, 86, 64, 0.08);
+}
+
+.dark .rustic-shadow-1 {
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+}
+
+.dark .rustic-shadow-2 {
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.45);
+}
+
+.dark .rustic-shadow-3 {
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.6);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-right {
+    animation: none !important;
+    transition: none !important;
+  }
+}

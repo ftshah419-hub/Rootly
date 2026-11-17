@@ -92,7 +92,10 @@ apiClient.interceptors.response.use(
     }
 
     const message =
-      error.response?.data?.message || error.message || 'Network request failed';
+      (error.response?.data?.errors && error.response.data.errors[0]) ||
+      error.response?.data?.message ||
+      error.message ||
+      'Network request failed';
     const customError = new Error(message);
     customError.response = error.response;
     customError.status = error.response?.status || 500;

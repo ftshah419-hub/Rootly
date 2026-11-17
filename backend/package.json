@@ -8,7 +8,8 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test:models": "node tests/testModels.js",
-    "test:auth": "node tests/testAuth.js"
+    "test:auth": "node tests/testAuth.js",
+    "create:admin": "node createAdmin.js"
   },
   "keywords": [
     "rootly",

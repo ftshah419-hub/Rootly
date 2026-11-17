@@ -10,10 +10,7 @@ const startServer = async () => {
     // 1. Validate environment
     validateEnv();
 
-    // 2. Connect to MongoDB Atlas / Database
-    await connectDB();
-
-    // 3. Create HTTP & WebSocket Server
+    // 2. Create HTTP & WebSocket Server
     const server = http.createServer(app);
     const io = new SocketIOServer(server, {
       cors: {
@@ -31,20 +28,32 @@ const startServer = async () => {
       }
     });
 
-    // 4. Initialize real-time chat socket handlers
+    // 3. Initialize real-time chat socket handlers
     setupChatSocket(io);
 
-    // 5. Start listening
+    // 4. Start listening on all interfaces
     const PORT = ENV.PORT || 5000;
-    server.listen(PORT, () => {
+    server.listen(PORT, '0.0.0.0', () => {
       console.log(`\n=============================================================`);
       console.log(`  🌱 ROOTLY HOMEGROWN PRODUCE EXCHANGE — BACKEND CORE`);
-      console.log(`  Running on: http://localhost:${PORT}`);
+      console.log(`  Running on: http://0.0.0.0:${PORT}`);
       console.log(`  Environment: ${ENV.NODE_ENV}`);
       console.log(`  Client Origin: ${ENV.CLIENT_URL}`);
-      console.log(`  API Base: http://localhost:${PORT}/api`);
+      console.log(`  API Base: http://0.0.0.0:${PORT}/api`);
       console.log(`=============================================================\n`);
     });
+
+    // 5. Connect to MongoDB Atlas / Database with background retry
+    const attemptDBConnection = async () => {
+      try {
+        await connectDB();
+      } catch (error) {
+        console.error(`[MongoDB Atlas] Connection pending: ${error.message}`);
+        console.info(`[MongoDB Atlas TIP] Ensure 0.0.0.0/0 (Allow from Anywhere) is whitelisted in MongoDB Atlas Network Access.`);
+        setTimeout(attemptDBConnection, 5000);
+      }
+    };
+    attemptDBConnection();
 
     // Graceful shutdown
     const handleShutdown = async (signal) => {

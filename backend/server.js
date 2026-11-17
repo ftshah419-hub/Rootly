@@ -18,7 +18,11 @@ const startServer = async () => {
     const io = new SocketIOServer(server, {
       cors: {
         origin: (origin, callback) => {
-          if (!origin || /^http:\/\/localhost:\d+$/.test(origin) || /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)) {
+          if (
+            !origin ||
+            /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
+            /\.vercel\.app$/.test(origin)
+          ) {
             return callback(null, true);
           }
           return callback(null, true);

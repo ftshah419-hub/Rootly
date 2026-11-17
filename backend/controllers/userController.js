@@ -129,13 +129,14 @@ export const getCategories = asyncHandler(async (req, res) => {
 // ==========================================
 
 export const getExchangeRequests = asyncHandler(async (req, res) => {
-  const userId = req.user._id;
-  const { role, status, page = 1, limit = 20 } = req.query;
+  const userId = req.user ? req.user._id : undefined;
+  const { role, status, page = 1, limit = 20, type, requestType } = req.query;
 
   const result = await exchangeService.getExchangeRequests({
     userId,
     role,
     status,
+    type: type || requestType,
     page: Number(page),
     limit: Number(limit)
   });

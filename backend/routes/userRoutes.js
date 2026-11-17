@@ -6,7 +6,7 @@
  */
 
 import { Router } from 'express';
-import { authenticate } from '../middleware/authMiddleware.js';
+import { authenticate, optionalAuthenticate } from '../middleware/authMiddleware.js';
 import * as userController from '../controllers/userController.js';
 
 const router = Router();
@@ -25,9 +25,9 @@ router.delete('/products/:id', authenticate, userController.deleteProduct);
 router.get('/categories', userController.getCategories);
 
 // ==========================================
-// 2. EXCHANGE & BARTER WORKFLOWS (AUTH)
+// 2. EXCHANGE & BARTER WORKFLOWS (OPTIONAL AUTH FOR DISCOVERY)
 // ==========================================
-router.get('/exchanges', authenticate, userController.getExchangeRequests);
+router.get('/exchanges', optionalAuthenticate, userController.getExchangeRequests);
 router.post('/exchanges', authenticate, userController.createExchangeRequest);
 router.patch('/exchanges/:id/status', authenticate, userController.updateExchangeStatus);
 

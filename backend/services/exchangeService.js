@@ -136,3 +136,32 @@ export const updateExchangeStatus = async (exchangeRequestId, userId, newStatus,
 
   return request;
 };
+
+export const getExchangeRequests = async ({ userId, role, status, requestType, type, page = 1, limit = 20 } = {}) => {
+  const query = {};
+  if (userId) {
+    if (role === 'seller') {
+      query.sellerId = userId;
+    } else if (role === 'requester') {
+      query.requesterId = userId;
+    } else {
+      query.$or = [{ sellerId: userId }, { requesterId: userId }];
+    }
+  }
+  if (status) query.status = status;
+  const t = requestType || type;
+  if (t) query.requestType = t;
+
+  const skip = (page - 1) * limit;
+  const requests = await ExchangeRequest.find(query)
+    .populate('productId')
+    .populate('requesterId', 'name profile.gardenName profile.avatar')
+    .populate('sellerId', 'name profile.gardenName profile.avatar')
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .lean();
+
+  const total = await ExchangeRequest.countDocuments(query);
+  return { requests, total, page, pages: Math.ceil(total / limit) };
+};

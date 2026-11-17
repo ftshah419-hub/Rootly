@@ -34,3 +34,9 @@ export const getHarvestById = async (harvestId) => {
   if (!harvest) throw new ApiError(404, 'Harvest listing not found.');
   return harvest;
 };
+
+export const getMyHarvests = async (growerId) => {
+  return await Harvest.find({ growerId })
+    .populate('categoryId', 'name slug icon')
+    .sort({ createdAt: -1 });
+};

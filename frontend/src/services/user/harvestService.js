@@ -6,10 +6,26 @@ export const harvestService = {
    */
   async getUpcomingHarvests(params = {}) {
     try {
-      const response = await apiClient.get('/user/harvests', { params });
+      const queryParams = typeof params === 'number' ? { days: params } : params;
+      const response = await apiClient.get('/user/harvests/upcoming', { params: queryParams }).catch(() => {
+        return apiClient.get('/user/harvests', { params: queryParams });
+      });
       return response.data?.harvests || response.data || [];
     } catch (error) {
       console.warn('harvestService.getUpcomingHarvests warning:', error.message);
+      return [];
+    }
+  },
+
+  /**
+   * Get current user's registered upcoming harvests
+   */
+  async getMyHarvests() {
+    try {
+      const response = await apiClient.get('/user/harvests/my-harvests');
+      return response.data?.harvests || response.data || [];
+    } catch (error) {
+      console.warn('harvestService.getMyHarvests warning:', error.message);
       return [];
     }
   },

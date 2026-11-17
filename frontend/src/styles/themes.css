@@ -1,0 +1,19 @@
+/* Light Theme Default */
+:root {
+  --bg-primary: #F7F0E3;
+  --bg-card: #FFFDF8;
+  --text-primary: #282B24;
+  --text-secondary: #795640;
+  --border-color: #E9D8B9;
+  --input-bg: #FFFFFF;
+}
+
+/* Dark Theme */
+.dark {
+  --bg-primary: #282B24;
+  --bg-card: #34382F;
+  --text-primary: #F7F0E3;
+  --text-secondary: #A5AD91;
+  --border-color: #464C3F;
+  --input-bg: rgba(40, 43, 36, 0.9);
+}

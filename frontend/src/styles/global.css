@@ -1,0 +1,69 @@
+@import './variables.css';
+@import './themes.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.font-serif-brand {
+  font-family: var(--font-display);
+}
+
+.font-malayalam {
+  font-family: var(--font-malayalam);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(233, 216, 185, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A5AD91;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #795640;
+}
+
+/* Leaflet Map overrides for rustic styling */
+.leaflet-container {
+  font-family: var(--font-sans) !important;
+  border-radius: 1rem;
+  z-index: 10;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #FFFDF8 !important;
+  color: #282B24 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px -5px rgba(62, 80, 53, 0.2) !important;
+  border: 1px solid #E9D8B9 !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background-color: #34382F !important;
+  color: #F7F0E3 !important;
+  border: 1px solid #464C3F !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #FFFDF8 !important;
+}
+
+.dark .leaflet-popup-tip {
+  background-color: #34382F !important;
+}

@@ -1,0 +1,36 @@
+:root {
+  /* Rustic Premium Palette */
+  --color-olive-forest: #3E5035;
+  --color-olive-dark: #2E3B27;
+  --color-olive-light: #4F6644;
+  --color-terracotta: #C8754D;
+  --color-terracotta-hover: #B5643E;
+  --color-sand: #E9D8B9;
+  --color-cream: #F7F0E3;
+  --color-cream-card: #FFFDF8;
+  --color-earth-brown: #795640;
+  --color-soft-sage: #A5AD91;
+  --color-deep-bark: #282B24;
+  --color-warm-white: #FFFDF8;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-malayalam: 'Gayathri', 'Noto Sans Malayalam', sans-serif;
+
+  /* Transitions */
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
